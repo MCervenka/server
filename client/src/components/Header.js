@@ -26,8 +26,8 @@ class Header extends Component {
                 );
             default:
                 return [
-                        <div style={{margin: "0px 10px", fontSize: "30px"}}>Kredity: {this.props.auth.credits}</div>,
-                        <div>
+                        <div style={{margin: "0px 10px", fontSize: "30px"}} key="1">Kredity: {this.props.auth.credits}</div>,
+                        <div key="2">
                             <Payments></Payments>
                             <Button variant="primary" href="/api/logout">Logout</Button>
                             <div className="d-block" style={{textAlign:"center"}}>
