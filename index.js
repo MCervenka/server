@@ -6,8 +6,9 @@ const keys = require("./config/keys");
 const bodyParser = require("body-parser");
 require("./models/User");
 require("./services/passport");
+require("./models/Comments");
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {useNewUrlParser: true});
 
 const app = express();
 app.use(bodyParser.json());
@@ -22,6 +23,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/commentRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));

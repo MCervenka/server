@@ -30,7 +30,7 @@ class Header extends Component {
                         <div key="2">
                             <Payments></Payments>
                             <Button variant="primary" href="/api/logout">Logout</Button>
-                            <div className="d-block" style={{textAlign:"center"}}>
+                            <div className="d-block">
                                 V&iacute;tejte {this.props.auth.userName}
                             </div>
                         </div>
@@ -60,6 +60,9 @@ class Header extends Component {
                         </LinkContainer>
                         <LinkContainer exact to="/appointment">
                                <Nav.Link> Objedn&aacute;vkov&yacute; kalend&aacute;ř </Nav.Link>  
+                        </LinkContainer>
+                        <LinkContainer exact to="/comments">
+                               <Nav.Link> Komentare </Nav.Link>  
                         </LinkContainer>
 
                         <NavDropdown title="Služby" id="basic-nav-dropdown">
