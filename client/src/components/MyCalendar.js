@@ -2,39 +2,72 @@ import React, { Component} from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import * as actions from "../actions";
+import { connect } from "react-redux";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const minTime = new Date();
 minTime.setHours(7,0,0);
 const maxTime = new Date();
 maxTime.setHours(21,0,0);
 
-moment.locale('en');
+moment.locale('cz');
 
 const localizer = momentLocalizer(moment);
 
-const dummyEvents = [
-  {
-    allDay: false,
-    end: new Date('September 10, 2019 11:13:00'),
-    start: new Date('September 09, 2019 11:13:00'),
-    title: 'hi',
-  },
-  {
-    allDay: true,
-    end: new Date('September 09, 2019 11:13:00'),
-    start: new Date('September 09, 2019 11:13:00'),
-    title: 'All Day Event',
-  },
-  ];
+  const messages = {
+    allDay: 'Celý den',
+    previous: '<',
+    next: '>',
+    today: 'Dnes',
+    month: 'Měsíc',
+    week: 'Týden',
+    day: 'Den',
+    agenda: 'Agenda',
+    date: 'Datum',
+    time: 'Čas',
+    event: 'Událost',
+    work_week: 'Týden',
+    showMore: total => `+ Zobrazit další (${total})`
+  };
 
 class MyCalendar extends Component{
-
-    onSlotChange = (slotInfo) => {
-      var startDate = moment(slotInfo.start.toLocaleString()).format("YYYY-MM-DD HH:mm:ss");
-      var endDate = moment(slotInfo.end.toLocaleString()).format("YYYY-MM-DD HH:mm:ss");
-      console.log('startTime', startDate); //shows the start time chosen
-      console.log('endTime', endDate); //shows the end time chosen
-
+  state = {
+    popUp: true, 
+    show: false,
+    slot: {}
+    };
+  handleReserve = () => {
+    this.setState({show: false, book: true});
+    var startDate = moment(this.state.slot.start);
+    var endDate = moment(this.state.slot.end);
+    var newEvent = {
+      allDay: false,
+      end: endDate,
+      start: startDate,
+      title: this.props.auth.userName,
+      id: this.props.auth.id,
+      userName: this.props.userName
+    };
+    this.props.handleEvent(newEvent)
+  };
+  handleClose = () => {
+    this.setState({show: false});
+    this.setState({book: false});
+  };
+  handleShow = () => this.setState({show: true});
+  onSlotChange = (slotInfo) => {
+      
+    if(this.props.auth.userName === undefined){
+      if(this.state.popUp){
+        this.setState({ popUp: false });
+        window.alert("Pro zabookování termínu je potřebné se přihlásit");
+      }
+      return ;
+      }
+      this.handleShow();
+      this.setState({slot: slotInfo});
     }
 
     onEventClick = (event) => {
@@ -44,10 +77,31 @@ class MyCalendar extends Component{
     render (){
       return (
 
-          <div style={{ height: "500px"}}>
+          <div style={{ height: "800px"}}>
+            <div>
+              <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Rezervace</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Ak si prajete rezervovat dany termin, kliknite na tlacitko rezervovat</Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={this.handleClose}>
+                    Zavrit
+                  </Button>
+                  <Button variant="primary" onClick={this.handleReserve}>
+                    Rezervovat
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
             <Calendar
               localizer={localizer}
-              events={dummyEvents}
+              events={this.props.events.map(oldEvent => ({
+                title: oldEvent.title,
+                end: new Date(oldEvent.end),
+                start: new Date(oldEvent.start),
+                allDay: oldEvent.allDay
+              }))}
               startAccessor="start"
               endAccessor="end"
               defaultView="work_week"
@@ -59,9 +113,18 @@ class MyCalendar extends Component{
               step={60}
               timeslots={1}
               selectable={"ignoreEvents"}
+              messages={messages}
             />
           </div>
     );
   }
 } 
-export default MyCalendar;
+
+function mapStateToProps({ events, auth }) {
+  return { 
+    events,
+    auth
+   };
+}
+
+export default connect(mapStateToProps, actions)(MyCalendar);

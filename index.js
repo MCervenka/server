@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 require("./models/User");
 require("./services/passport");
 require("./models/Comments");
+require("./models/Events");
 
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true});
 
@@ -24,6 +25,7 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 require("./routes/commentRoutes")(app);
+require("./routes/eventRoutes")(app);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));

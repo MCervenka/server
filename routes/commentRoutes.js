@@ -8,8 +8,8 @@ var moment = require('moment');
 
 module.exports = app => {
     app.post("/api/comment", requireLogin, async (req, res) => {
-        var today = new Date();
-        var date = today.getDate() +'.'+(today.getMonth()+1)+'.'+today.getFullYear() + "  " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        //var today = new Date();
+        //var date = today.getDate() +'.'+(today.getMonth()+1)+'.'+today.getFullYear() + "  " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
        var momentDate = moment().format("DD.MM.YYYY hh:mm:ss");
         const newComment = await new Comment ({
         comment: req.body.commentNew,
