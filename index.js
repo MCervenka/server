@@ -20,9 +20,9 @@ wss.on('connection', function connection(ws) {
     });
   });
 });
+const PORT = process.env.PORT || 5000;
 
-
-server.listen(process.env.PORT, function() {
+server.listen(PORT, function() {
 
   console.log(`http/ws server listening on ${process.env.PORT}`);
 });
