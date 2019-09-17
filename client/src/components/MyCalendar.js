@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-const URL = 'https://boiling-sands-96880.herokuapp.com';
+const URL = 'ws://boiling-sands-96880.herokuapp.com';
 const minTime = new Date();
 minTime.setHours(7,0,0);
 const maxTime = new Date();
