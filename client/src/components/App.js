@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../actions";
 import Container from "react-bootstrap/Container";
 import Header from "./Header";
 import Landing from "./Landing";
@@ -13,11 +11,7 @@ const SurveyNew = () => <h2>SurveyNew</h2>
 const Gallery = () => <h2>Gallery</h2>
 
 class App extends Component {
-    componentDidMount() {
-        this.props.fetchUser();
-        this.props.getComments();
-        this.props.getEvents();
-    }
+
 
     render(){
         return (
@@ -36,4 +30,4 @@ class App extends Component {
         );
     }
 }
-export default connect(null, actions)(App);
+export default App;

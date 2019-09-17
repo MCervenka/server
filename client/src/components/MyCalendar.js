@@ -33,6 +33,9 @@ const localizer = momentLocalizer(moment);
   };
 
 class MyCalendar extends Component{
+  componentDidMount() {
+    this.props.getEvents();
+}
   state = {
     popUp: true, 
     show: false,

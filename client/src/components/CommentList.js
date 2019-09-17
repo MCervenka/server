@@ -9,7 +9,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 class Comment extends Component {
     state = { term: "" };
-
+    componentDidMount() {
+        this.props.getComments();
+    }
     onInputChange = (event) => {
         let inputValue = event.target.value;
         this.setState ( { term: inputValue });

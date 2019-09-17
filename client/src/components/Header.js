@@ -10,8 +10,12 @@ import Logo from "./content/manicure.png";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { LinkContainer } from "react-router-bootstrap";
+import * as actions from "../actions";
 
 class Header extends Component {
+    componentDidMount() {
+        this.props.fetchUser();
+    }
     renderContent(){
         switch (this.props.auth){
             case null:
@@ -85,4 +89,4 @@ function mapStateToProps({ auth }) {
     return { auth };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actions)(Header);
