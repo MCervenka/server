@@ -5,23 +5,43 @@ import * as actions from "../actions";
 import { connect } from "react-redux";
 import RenderComments from "./RenderComments";
 import InputGroup from "react-bootstrap/InputGroup";
-
+const URL = 'ws://localhost:3030';
 
 class Comment extends Component {
+    ws = new WebSocket(URL);
     state = { term: "" };
     componentDidMount() {
-        this.props.getComments();
+        this.props.getComments();     
+        this.ws.onmessage = evt => {
+            if(evt.data === "newComment"){
+                this.props.getComments();
+            }
+        }     
+        this.ws.onclose = () => {
+            this.setState({
+              ws: new WebSocket(URL),
+            })
+        }
     }
+
+
     onInputChange = (event) => {
         let inputValue = event.target.value;
         this.setState ( { term: inputValue });
     };
 
     onFormSubmit = event => {
-        this.props.handleComment(this.state.term);
-        event.preventDefault();
-        this.setState ({ term: "" })
-
+        switch (this.props.auth){
+            case null:
+                return window.alert("Pro přidání komentáře je potřebné se přihlásit");
+            case false:
+                return window.alert("Pro přidání komentáře je potřebné se přihlásit");
+            default:     
+                this.props.handleComment(this.state.term);
+                this.ws.send("newComment");
+                event.preventDefault();
+                this.setState ({ term: "" });
+        }
     };
 
     render () {
@@ -47,8 +67,11 @@ class Comment extends Component {
     }
 }
 
-function mapStateToProps({ comments }) {
-    return { comments };
+function mapStateToProps({ comments, auth }) {
+    return {
+        comments,
+        auth
+    };
 }
 
 export default connect(mapStateToProps, actions)(Comment);

@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
+const URL = 'ws://localhost:3030';
 const minTime = new Date();
 minTime.setHours(7,0,0);
 const maxTime = new Date();
@@ -33,8 +34,20 @@ const localizer = momentLocalizer(moment);
   };
 
 class MyCalendar extends Component{
+  ws = new WebSocket(URL);
   componentDidMount() {
     this.props.getEvents();
+    this.ws.onmessage = evt => {
+      if(evt.data === "newEvent"){
+        this.props.getEvents();
+      }
+
+  }     
+  this.ws.onclose = () => {
+      this.setState({
+        ws: new WebSocket(URL),
+      })
+  }
 }
   state = {
     popUp: true, 
@@ -53,7 +66,8 @@ class MyCalendar extends Component{
       id: this.props.auth.id,
       userName: this.props.userName
     };
-    this.props.handleEvent(newEvent)
+    this.props.handleEvent(newEvent);
+    this.ws.send("newEvent");
   };
   handleClose = () => {
     this.setState({show: false});
@@ -69,9 +83,9 @@ class MyCalendar extends Component{
       }
       return ;
       }
-      this.handleShow();
-      this.setState({slot: slotInfo});
-    }
+    this.handleShow();
+    this.setState({slot: slotInfo});
+  }
 
     onEventClick = (event) => {
       console.log(event) //Shows the event details provided while booking
