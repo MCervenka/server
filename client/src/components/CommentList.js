@@ -5,7 +5,7 @@ import * as actions from "../actions";
 import { connect } from "react-redux";
 import RenderComments from "./RenderComments";
 import InputGroup from "react-bootstrap/InputGroup";
-const URL = 'ws://boiling-sands-96880.herokuapp.com';
+const URL = 'wss://boiling-sands-96880.herokuapp.com';
 
 class Comment extends Component {
     ws = new WebSocket(URL);
