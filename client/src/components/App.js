@@ -4,11 +4,11 @@ import Container from "react-bootstrap/Container";
 import Header from "./Header";
 import Landing from "./Landing";
 import CommentList from "./CommentList";
-
+import Gallery from "./Gallery";
 import Booking from "./Booking";
 
 const SurveyNew = () => <h2>SurveyNew</h2>
-const Gallery = () => <h2>Gallery</h2>
+
 
 class App extends Component {
 
