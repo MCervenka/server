@@ -41,7 +41,5 @@ ws.onclose = function close() {
 };
 
 ws.onmessage = function incoming(data) {
-  wss.clients.forEach(function each(client) {
-    if (client !== ws && client.readyState === WebSocket.OPEN) {
-      client.send(data);
+
 };
