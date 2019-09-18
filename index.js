@@ -33,7 +33,7 @@ const WebSocket = require('isomorphic-ws')
 const ws = new WebSocket('wss://boiling-sands-96880.herokuapp.com', {
   origin: 'https://boiling-sands-96880.herokuapp.com'
 });
-
+/*
 ws.onopen = function open() {
 };
 
@@ -43,3 +43,4 @@ ws.onclose = function close() {
 ws.onmessage = function incoming(data) {
 
 };
+*/
