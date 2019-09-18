@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
 
-const WebSocket = require('ws');
+/*const WebSocket = require('ws');
 
 const wss = new WebSocket.Server({ port: 3030 });
 
@@ -52,7 +52,7 @@ wss.on('connection', function connection(ws) {
     });
   });
 });
-
+*/
 const WebSocket = require('isomorphic-ws')
 
 const ws = new WebSocket('wss://boiling-sands-96880.herokuapp.com', {
