@@ -41,7 +41,7 @@ app.listen(PORT);
 
 const WebSocket = require('ws');
 
-const wss = new WebSocket.Server({ port: process.env.PORT || 3030 });
+const wss = new WebSocket.Server({ port: 3030 });
 
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(data) {
@@ -58,3 +58,20 @@ const WebSocket = require('isomorphic-ws')
 const ws = new WebSocket('wss://boiling-sands-96880.herokuapp.com', {
   origin: 'https://boiling-sands-96880.herokuapp.com'
 });
+
+ws.onopen = function open() {
+  console.log('connected');
+  ws.send(Date.now());
+};
+
+ws.onclose = function close() {
+  console.log('disconnected');
+};
+
+ws.onmessage = function incoming(data) {
+  console.log(`Roundtrip time: ${Date.now() - data.data} ms`);
+
+  setTimeout(function timeout() {
+    ws.send(Date.now());
+  }, 500);
+};
