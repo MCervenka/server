@@ -24,8 +24,8 @@ class Header extends Component {
                 return (
                 <DropdownButton title="Login" id="dropdown-basic-button primary">
                     <Dropdown.Item href="/auth/google">Login with Google</Dropdown.Item>
-                    <Dropdown.Item href="#action/3.2">Login with Facebook</Dropdown.Item>
-                    <Dropdown.Item href="#action/3.3">Login with Apple Id</Dropdown.Item>
+                    {/*<Dropdown.Item href="#action/3.2">Login with Facebook</Dropdown.Item>
+                    <Dropdown.Item href="#action/3.3">Login with Apple Id</Dropdown.Item>*/}
                 </DropdownButton>
                 );
             default:

@@ -35,11 +35,3 @@ if (process.env.NODE_ENV === "production"){
     origin: 'https://boiling-sands-96880.herokuapp.com'
   });
 }
-
-/*
-const ws = function (){
-  if (process.env.NODE_ENV === "production"){return new WebSocket('wss://boiling-sands-96880.herokuapp.com', {
-    origin: 'https://boiling-sands-96880.herokuapp.com'
-  });} else { return new WebSocket('wss://localhost:8080', {
-    origin: 'http://localhost:8080'})
-}}();*/

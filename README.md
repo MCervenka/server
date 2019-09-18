@@ -1,18 +1,10 @@
 # Katkin-Salon
 webpage for manicure salon
 
-contributor: {
-  name: Martin Červenka,
+contributor: Martin Červenka,
   living: Prague,
   age: 28,
-  previousJobs: {
-    Traffic data analyst in Panalpina,
-    Telefonic tech support: {
-      AT´n´T,
-      Apple
-    },
-  },
- },
+
  
 Hello this is my first bigger webpage project. I am working in React and Redux frameworks with Node.js.
 Trying to make a webpage for my wife for her manicure salon.
