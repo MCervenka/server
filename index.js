@@ -1,7 +1,7 @@
 let WSServer = require('ws').Server;
 let server = require('http').createServer();
 let app = require('./httpServer');
-
+const WebSocket = require('ws');
 // Create web socket server on top of a regular http server
 let wss = new WSServer({
 
@@ -20,27 +20,26 @@ wss.on('connection', function connection(ws) {
     });
   });
 });
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3030;
 
 server.listen(PORT, function() {
 
-  console.log(`http/ws server listening on ${process.env.PORT}`);
+  console.log(`http/ws server listening on ${PORT}`);
 });
 
-const WebSocket = require('isomorphic-ws')
+if (process.env.NODE_ENV === "production"){
+  const WebSocket = require('isomorphic-ws')
 
 
-const ws = new WebSocket('wss://boiling-sands-96880.herokuapp.com', {
-  origin: 'https://boiling-sands-96880.herokuapp.com'
-});
+  const ws = new WebSocket('wss://boiling-sands-96880.herokuapp.com', {
+    origin: 'https://boiling-sands-96880.herokuapp.com'
+  });
+}
+
 /*
-ws.onopen = function open() {
-};
-
-ws.onclose = function close() {
-};
-
-ws.onmessage = function incoming(data) {
-
-};
-*/
+const ws = function (){
+  if (process.env.NODE_ENV === "production"){return new WebSocket('wss://boiling-sands-96880.herokuapp.com', {
+    origin: 'https://boiling-sands-96880.herokuapp.com'
+  });} else { return new WebSocket('wss://localhost:8080', {
+    origin: 'http://localhost:8080'})
+}}();*/

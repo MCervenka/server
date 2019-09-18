@@ -7,7 +7,10 @@ import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-const URL = 'wss://boiling-sands-96880.herokuapp.com';
+const URL = () =>{
+  if (process.env.NODE_ENV === "development"){return 'ws://localhost:3030'}
+  return 'wss://boiling-sands-96880.herokuapp.com'
+};
 const minTime = new Date();
 minTime.setHours(7,0,0);
 const maxTime = new Date();
@@ -34,7 +37,7 @@ const localizer = momentLocalizer(moment);
   };
 
 class MyCalendar extends Component{
-  ws = new WebSocket(URL);
+  ws = new WebSocket(URL());
   componentDidMount() {
     this.props.getEvents();
     this.ws.onmessage = evt => {
@@ -45,7 +48,7 @@ class MyCalendar extends Component{
   }     
   this.ws.onclose = () => {
       this.setState({
-        ws: new WebSocket(URL),
+        ws: new WebSocket(URL()),
       })
   }
 }

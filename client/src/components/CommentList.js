@@ -5,10 +5,14 @@ import * as actions from "../actions";
 import { connect } from "react-redux";
 import RenderComments from "./RenderComments";
 import InputGroup from "react-bootstrap/InputGroup";
-const URL = 'wss://boiling-sands-96880.herokuapp.com';
+const URL = () =>{
+    if (process.env.NODE_ENV === "development"){return 'ws://localhost:3030'}
+    return 'wss://boiling-sands-96880.herokuapp.com'
+};
+
 
 class Comment extends Component {
-    ws = new WebSocket(URL);
+    ws = new WebSocket(URL());
     state = { term: "" };
     componentDidMount() {
         this.props.getComments();     
@@ -19,7 +23,7 @@ class Comment extends Component {
         }     
         this.ws.onclose = () => {
             this.setState({
-              ws: new WebSocket(URL),
+              ws: new WebSocket(URL()),
             })
         }
     }
@@ -45,7 +49,6 @@ class Comment extends Component {
     };
 
     render () {
-       
         return(
             <div>
                 <InputGroup className="mb-3" onSubmit={this.onInputChange}>
