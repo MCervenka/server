@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Payments from "./Payments";
 import Image from 'react-bootstrap/Image';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Logo from "./content/manicure.png";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Dropdown from "react-bootstrap/Dropdown";
+//import DropdownButton from "react-bootstrap/DropdownButton";
+//import Dropdown from "react-bootstrap/Dropdown";
 import { LinkContainer } from "react-router-bootstrap";
 import * as actions from "../actions";
+
+const textLogin = "Přihlásit se";
 
 class Header extends Component {
     componentDidMount() {
@@ -21,22 +22,20 @@ class Header extends Component {
             case null:
                 return;
             case false:
-                return (
-                <DropdownButton title="Login" id="dropdown-basic-button primary">
-                    <Dropdown.Item href="/auth/google">Login with Google</Dropdown.Item>
-                    {/*<Dropdown.Item href="#action/3.2">Login with Facebook</Dropdown.Item>
-                    <Dropdown.Item href="#action/3.3">Login with Apple Id</Dropdown.Item>*/}
-                </DropdownButton>
+                return (<Button variant="primary" href="/auth/google"> {textLogin} </Button>
+                {/*<DropdownButton title="Přihlásit se" id="dropdown-basic-button primary">
+                    <Dropdown.Item href="/auth/google">Prihlasit se cez google ucet</Dropdown.Item>
+                    <Dropdown.Item href="#action/3.2">Login with Facebook</Dropdown.Item>
+                    <Dropdown.Item href="#action/3.3">Login with Apple Id</Dropdown.Item>
+                </DropdownButton>*/}
                 );
             default:
                 return [
-                        <div style={{margin: "0px 10px", fontSize: "30px"}} key="1">Kredity: {this.props.auth.credits}</div>,
+                        <div className="d-block" key="1" style={{marginRight: "5px"}}>
+                            V&iacute;tejte {this.props.auth.userName} 
+                        </div>,
                         <div key="2">
-                            <Payments></Payments>
-                            <Button variant="primary" href="/api/logout">Logout</Button>
-                            <div className="d-block">
-                                V&iacute;tejte {this.props.auth.userName}
-                            </div>
+                            <Button variant="primary" href="/api/logout">Odhlasit se</Button>
                         </div>
 
                 ];
@@ -66,7 +65,7 @@ class Header extends Component {
                                <Nav.Link> Objedn&aacute;vkov&yacute; kalend&aacute;ř </Nav.Link>  
                         </LinkContainer>
                         <LinkContainer exact to="/comments">
-                               <Nav.Link> Komentare </Nav.Link>  
+                               <Nav.Link> Koment&aacute;ře </Nav.Link>  
                         </LinkContainer>
 
                         <NavDropdown title="Služby" id="basic-nav-dropdown">

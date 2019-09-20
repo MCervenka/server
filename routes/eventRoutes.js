@@ -15,7 +15,9 @@ module.exports = app => {
             start: req.body.event.start,
             title: req.body.event.title,
             id: req.user.id,
-            userName: req.user.userName
+            userName: req.user.userName,
+            paid: req.user.paid,
+            procedure: req.user.procedure
        }).save()
        const allEvents = await Event.find();
         res.send(allEvents);

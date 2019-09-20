@@ -3,16 +3,23 @@ const stripe = require("stripe")(keys.stripeSecretKey);
 const requireLogin = require("../middlewares/requireLogin");
 
 module.exports = app => {
-    app.post("/api/stripe", requireLogin, async (req, res) => {
-        const charge = await stripe.charges.create({
-            amount: 500,
-            currency: "usd",
-            description: "zaplatit proceduru",
+    app.post("/api/stripe/shellac", requireLogin, (req, res) => {
+        stripe.charges.create({
+            amount: 35000,
+            currency: "CZK",
+            description: "zaplatiť procedúru",
             source: req.body.id
         });
-        req.user.credits += 5;
-        const user = await req.user.save();
-        res.send(user);
+        res.send();
+    });
+    app.post("/api/stripe/pshine", requireLogin, (req, res) => {
+        stripe.charges.create({
+            amount: 25000,
+            currency: "CZK",
+            description: "zaplatiť procedúru",
+            source: req.body.id
+        });
+        res.send();
     });
 };
  

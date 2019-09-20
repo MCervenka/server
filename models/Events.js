@@ -7,7 +7,9 @@ const eventSchema = new Schema({
     start: Date,
     title: String,
     id: String,
-    userName: String 
+    userName: String,
+    paid: Boolean,
+    procedure: String 
 });
 
 mongoose.model("events", eventSchema);

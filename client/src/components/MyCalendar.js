@@ -6,6 +6,10 @@ import * as actions from "../actions";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Payments from "./Payments"; 
+
+const textRezervace = "Ak si přejete rezervovat daný termín, klikněte na tlačítko rezervovat. Pokud si přejete zaplatit za termín dopředu, klikněte na tlačítko zaplatit kartou"
+const textProcedura = "Zvolte procedúru";
 
 const URL = () =>{
   if (process.env.NODE_ENV === "development"){return 'ws://localhost:3030'}
@@ -55,8 +59,31 @@ class MyCalendar extends Component{
   state = {
     popUp: true, 
     show: false,
-    slot: {}
-    };
+    slot: {},
+    amount: 0,
+    showProceedure: false,
+    paid: false,
+    procedure: ""
+  };
+
+  handleProceedureCND = () => {
+    this.setState({
+      show: true,
+      amount: 350,
+      showProceedure: false,
+      procedure: "CND"
+    });
+  };
+  
+  handleProceedureP = () => {
+    this.setState({
+      show: true,
+      amount: 250,
+      showProceedure: false,
+      procedure: "Pshine"
+    });
+  };
+
   handleReserve = () => {
     this.setState({show: false, book: true});
     var startDate = moment(this.state.slot.start);
@@ -67,18 +94,24 @@ class MyCalendar extends Component{
       start: startDate,
       title: this.props.auth.userName,
       id: this.props.auth.id,
-      userName: this.props.userName
+      userName: this.props.userName,
+      paid: this.state.paid,
+      procedure: this.state.procedure
     };
     this.props.handleEvent(newEvent);
     this.ws.send("newEvent");
+    this.setState({paid: false});
   };
   handleClose = () => {
-    this.setState({show: false});
-    this.setState({book: false});
+    this.setState({
+      show: false,
+      book: false,
+      amount: 0,
+      showProceedure: false
+    });
   };
-  handleShow = () => this.setState({show: true});
+  handleShow = () => this.setState({showProceedure: true});
   onSlotChange = (slotInfo) => {
-      
     if(this.props.auth.userName === undefined){
       if(this.state.popUp){
         this.setState({ popUp: false });
@@ -91,7 +124,7 @@ class MyCalendar extends Component{
   }
 
     onEventClick = (event) => {
-      console.log(event) //Shows the event details provided while booking
+      console.log(event);
     }
 
     render (){
@@ -99,17 +132,39 @@ class MyCalendar extends Component{
 
           <div style={{ height: "800px"}}>
             <div>
-              <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal show={this.state.showProceedure} onHide={this.handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Rezervace</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Ak si prajete rezervovat dany termin, kliknite na tlacitko rezervovat</Modal.Body>
+                <Modal.Body>
+                  {textProcedura}<br />
+                  <Button variant="outline-primary" onClick={this.handleProceedureCND} style={{marginTop: "5px"}}>
+                    Shellack CND
+                  </Button><br />
+                  <Button variant="outline-primary" onClick={this.handleProceedureP} className="m" style={{marginTop: "5px"}}>
+                    P-Shine
+                  </Button>  
+                </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={this.handleClose}>
                     Zavrit
                   </Button>
-                  <Button variant="primary" onClick={this.handleReserve}>
-                    Rezervovat
+                </Modal.Footer>
+              </Modal>
+              <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Rezervace</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {textRezervace}<br />
+                  <Payments amount={this.state.amount} reserve={this.handleReserve} style={{marginTop: "5px"}}/><br />
+                  <Button variant="primary" onClick={this.handleReserve} style={{marginTop: "5px"}}>
+                      Rezervovat
+                  </Button>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={this.handleClose}>
+                    Zavrit
                   </Button>
                 </Modal.Footer>
               </Modal>

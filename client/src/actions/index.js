@@ -6,12 +6,6 @@ export const fetchUser = () => async dispatch => {
     dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const handleToken = (token) => async dispatch => {
-    const res = await axios.post("/api/stripe", token);
-
-    dispatch({ type: FETCH_USER, payload: res.data });
-};
-
 export const handleComment = (commentNew) => async dispatch => {
     const res = await axios.post("/api/comment", {commentNew: commentNew});
     dispatch({ type: FETCH_COMMENT, payload: res.data});
