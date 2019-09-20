@@ -23,11 +23,6 @@ class Header extends Component {
                 return;
             case false:
                 return (<Button variant="primary" href="/auth/google"> {textLogin} </Button>
-                {/*<DropdownButton title="Přihlásit se" id="dropdown-basic-button primary">
-                    <Dropdown.Item href="/auth/google">Prihlasit se cez google ucet</Dropdown.Item>
-                    <Dropdown.Item href="#action/3.2">Login with Facebook</Dropdown.Item>
-                    <Dropdown.Item href="#action/3.3">Login with Apple Id</Dropdown.Item>
-                </DropdownButton>*/}
                 );
             default:
                 return [
@@ -35,7 +30,7 @@ class Header extends Component {
                             V&iacute;tejte {this.props.auth.userName} 
                         </div>,
                         <div key="2">
-                            <Button variant="primary" href="/api/logout">Odhlasit se</Button>
+                            <Button variant="primary" href="/api/logout">Odhl&aacute;sit se</Button>
                         </div>
 
                 ];
