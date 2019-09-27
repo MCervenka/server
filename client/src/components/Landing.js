@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import salonImg from './content/salon.jpg';
 
-const textHeader = "Manikúrní salón Katky Červenkové";
+const textHeader = "Manikúrna Katka Červenková";
 const textUvod = "Jmenuji se Katka Červenková a budu pečovat o Vaše přírodní nehty dle Vašich potřeb a přání";
 const textOdsek1 = "Péče o ruce a nehty mě fascinovala už jako malou holku. Více jsem se začala věnovat tomuto oboru přibližně před 12 lety, kdy jsem zkoušela různé materiály a zdobení.";
 const textOdsek2 = "Už tehdy jsem pracovala s technikou gelových nehtů a v roce 2014 jsem absolvovala kurz akrylovej modeláže. Dnes jsou to už 3 roky, co se specializuji na léčbu přírodních nehtů, zničených po nehtové modeláži nebo neodborně provedenou manikúrou. Mým cílem je řešit tyto problémy komplexně, přes vitamíny, stravu a následnou domácí péči o nehty.";

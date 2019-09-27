@@ -6,6 +6,8 @@ import Landing from "./Landing";
 import CommentList from "./CommentList";
 import Gallery from "./Gallery";
 import MyCalendar from "./MyCalendar";
+import Pshine from "./Pshine";
+
 
 const SurveyNew = () => <h2>SurveyNew</h2>
 
@@ -24,6 +26,7 @@ class App extends Component {
                         <Route path="/surveys/new" component={SurveyNew} />
                         <Route exact path="/gallery" component={Gallery} />
                         <Route exact path="/comments" component={CommentList} />
+                        <Route exact path="/pshine" component={Pshine} />
                     </Container>
                 </BrowserRouter>
             </div>
