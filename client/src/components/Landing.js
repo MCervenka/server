@@ -13,7 +13,7 @@ const Landing = () => {
     return (
         <Container style={{ textAlign: "center", marginTop: "10px" }}>
             <Row>
-                <Col xs={12} md={7}>
+                <Col xs={12} md={6} lg={7} >
                     <h3>
                         {textHeader}
                     </h3>
@@ -26,7 +26,7 @@ const Landing = () => {
                     </p>
                     <p> {textOdsek3} </p>
                 </Col>
-                <Col xs={12} md={5}>
+                <Col xs={12} md={6} lg={5}>
                     <img src={salonImg} alt="salonImg" id="salonImg" />
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2561.3281322800217!2d14.433072515098747!3d50.06141617942358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b947ba87ba151%3A0xae1339b82811468e!2s%C5%BDateck%C3%BDch%201213%2F18%2C%20140%2000%20Praha%204-Nusle!5e0!3m2!1scs!2scz!4v1569575074400!5m2!1scs!2scz" width="300" height="250" frameborder="0" style={{ border: 0, marginTop: "5px" }} allowfullscreen="" title="google maps"></iframe>
                 </Col>
