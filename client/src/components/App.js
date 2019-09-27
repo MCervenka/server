@@ -15,7 +15,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="bgimg">
+            <div >
                 <BrowserRouter>
                     <Container style={{ backgroundColor: "white" }}>
                         <Header />

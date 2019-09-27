@@ -1,8 +1,4 @@
 body {
-    height: 100%;
-}
-
-.bgimg {
     background-image: url("background1.jpg");
     height: 100%;
     background-position: center;
@@ -10,6 +6,8 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
+
+
 
 .m {
     margin-top: 5 px;
