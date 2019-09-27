@@ -7,6 +7,12 @@ body {
     background-size: cover;
 }
 
+#salonImg{
+    size: cover;
+    border-radius: 8px;
+    width: 300px;
+}
+
 
 
 .m {
