@@ -4,27 +4,31 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import salonImg from './content/salon.jpg';
 
-const textHeader = "Manikúrní salón Kataríny Červenkovej";
-const textUvod = "Jmenuji se Katka Červenková a budu pečovat o Vaše přírodní nehty dle Vašich potřeb a přání.";
-const textOdsek1 = "Péče o ruce a nehty mě fascinovala už jako malou holku. Více jsem se začala věnovat tomuto oboru přibližně před 12 lety, kdy jsem zkoušela různé materiály a zdobení.";
-const textOdsek2 = "Už tehdy jsem pracovala s technikou gelových nehtů a v roku 2014 jsem absolvovala kurz akrylovej modeláže. Dnes jsou to už 3 roky, co se specializuji na léčbu přírodních nehtů, zničených po nehtové modeláži nebo neodborně provedenou manikúrou. Mým cílem je řešit tyto problémy komplexně, přes vitamíny, stravu a následnou domácí péči o nehty.";
-const textOdsek3 = "Neváhejte se na mě obrátit se svými potřebami s nehtama";
+const textHeader = "Manikúrní salón Katky Červenkové";
+const textUvod = "Jmenuji se Katka Červenková a budu pečovat o Vaše přírodní nehty dle Vašich potřeb a přání";
+const textOdsek1 = "Péče o ruce a nehty mě fascinovala už jako malou holku. Více jsem se začala věnovat tomuto oboru přibližně před 12 lety, kdy jsem zkoušela různé materiály a zdobení.";
+const textOdsek2 = "Už tehdy jsem pracovala s technikou gelových nehtů a v roce 2014 jsem absolvovala kurz akrylovej modeláže. Dnes jsou to už 3 roky, co se specializuji na léčbu přírodních nehtů, zničených po nehtové modeláži nebo neodborně provedenou manikúrou. Mým cílem je řešit tyto problémy komplexně, přes vitamíny, stravu a následnou domácí péči o nehty.";
+const textOdsek3 = "Neváhejte se na mě obrátit se svými potřebami s nehtama";
 const Landing = () => {
     return (
         <Container style={{ textAlign: "center", marginTop: "10px" }}>
             <Row>
                 <Col xs={12} md={6} lg={7} >
-                    <h3>
+                    <h1 className="myFontHeader">
                         {textHeader}
-                    </h3>
-                    <p> {textUvod} </p>
-                    <p> {textOdsek1} </p>
-                    <p> {textOdsek2} </p>
-                    <p>
-                        Pracuji se značkama:
-                        <br /> CND (USA) <br /> Cuccio Spa (It&aacute;lie)<br />Jessica System (USA)
-                    </p>
-                    <p> {textOdsek3} </p>
+                    </h1>
+                    <div className="myBodyText">
+                        <p></p>
+                        <p> {textUvod} </p>
+                        <p> {textOdsek1} </p>
+                        <p> {textOdsek2} </p>
+                        <p>
+                            Pracuji se značkama:
+                            <br /> CND (USA) <br /> Cuccio Spa (It&aacute;lie)<br />Jessica System (USA)
+                        </p>
+                        <p> {textOdsek3} </p>
+                    </div>
+
                 </Col>
                 <Col xs={12} md={6} lg={5}>
                     <img src={salonImg} alt="salonImg" id="salonImg" />

@@ -13,8 +13,14 @@ body {
     width: 300px;
 }
 
+.myFontHeader{
+    font-family: 'Playfair Display', serif;
+    background-color: rgb(234,253,253);
+}
 
-
+.myBodyFont{
+    font-family: 'Josefin Sans', sans-serif;
+}
 .m {
     margin-top: 5 px;
 }
