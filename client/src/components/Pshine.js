@@ -9,7 +9,7 @@ const textOdsek4 = "Nedoporučuje se používat na tenké, měkké nehty a po ne
 
 const Pshine = () => {
     return (
-        <div>
+        <div style={{ textAlign: "center", marginTop: "10px" }}>
             <h1 className="myFontHeader">
                 {textHeader}
             </h1>
