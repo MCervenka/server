@@ -5,25 +5,27 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 
 function importAll(r) {
-    return r.keys().map(r);
-  }
-const imagesGallery = importAll(require.context('./content/gallery/', false, /\.(png|jpe?g|svg)$/));   
+  return r.keys().map(r);
+}
+const imagesGallery = importAll(require.context('./content/gallery/', false, /\.(png|jpe?g|svg)$/));
 
 class Gallery extends Component {
-    render() {
+  render() {
 
-        const images = imagesGallery.map(function(x){
-            return {
-            original: x,
-            thumbnail: x
-            }
-        });
-   
-      return (
-        <ImageGallery items={images}/>
-      );
-    }
-   
+    const images = imagesGallery.map(function (x) {
+      return {
+        original: x,
+        thumbnail: x
+      }
+    });
+
+    return (
+      <ImageGallery items={images} style={{
+        height: "500px"
+      }} />
+    );
   }
 
-  export default Gallery;
+}
+
+export default Gallery;
