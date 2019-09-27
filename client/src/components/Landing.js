@@ -15,7 +15,7 @@ const Landing = () => {
             <p> {textOdsek2} </p>
             <p>
                 Pracuji se značkama:
-                <br /> CND (USA) <br /> Cuccio Spa(It&aaccute;lie)<br />Jessica System(USA)
+                <br /> CND (USA) <br /> Cuccio Spa(It&aacute;lie)<br />Jessica System(USA)
             </p>
             <p> {textOdsek3} </p>
         </div>
