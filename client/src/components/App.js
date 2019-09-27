@@ -13,14 +13,14 @@ const SurveyNew = () => <h2>SurveyNew</h2>
 class App extends Component {
 
 
-    render(){
+    render() {
         return (
-            <div>
+            <div className="bgimg">
                 <BrowserRouter>
-                    <Container style={{backgroundColor: "white"}}>
+                    <Container style={{ backgroundColor: "white" }}>
                         <Header />
                         <Route exact path="/" component={Landing} />
-                        <Route exact  path="/appointment" component={MyCalendar} />
+                        <Route exact path="/appointment" component={MyCalendar} />
                         <Route path="/surveys/new" component={SurveyNew} />
                         <Route exact path="/gallery" component={Gallery} />
                         <Route exact path="/comments" component={CommentList} />
