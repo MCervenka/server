@@ -20,9 +20,7 @@ class Gallery extends Component {
     });
 
     return (
-      <ImageGallery items={images} style={{
-        height: "500px"
-      }} />
+      <ImageGallery items={images} disableThumbnailScroll="true" />
     );
   }
 

@@ -24,3 +24,12 @@ body {
 .m {
     margin-top: 5 px;
 }
+
+.contact{
+    font-size: 20px;
+    color: rgb(31,173,170);
+}
+.image-gallery-image img {
+    max-height: 600px;
+    max-width: 600px;
+   }

@@ -3,20 +3,24 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import salonImg from './content/salon.jpg';
+import phone from './content/mobile-phone.png';
+import email from './content/email.png';
+import banner from './content/Pink Flowers Twitter Header.png'
 
-const textHeader = "Manikúrna Katka Červenková";
+//const textHeader = "Manikúra Katka Červenková";
 const textUvod = "Jmenuji se Katka Červenková a budu pečovat o Vaše přírodní nehty dle Vašich potřeb a přání";
 const textOdsek1 = "Péče o ruce a nehty mě fascinovala už jako malou holku. Více jsem se začala věnovat tomuto oboru přibližně před 12 lety, kdy jsem zkoušela různé materiály a zdobení.";
 const textOdsek2 = "Už tehdy jsem pracovala s technikou gelových nehtů a v roce 2014 jsem absolvovala kurz akrylovej modeláže. Dnes jsou to už 3 roky, co se specializuji na léčbu přírodních nehtů, zničených po nehtové modeláži nebo neodborně provedenou manikúrou. Mým cílem je řešit tyto problémy komplexně, přes vitamíny, stravu a následnou domácí péči o nehty.";
-const textOdsek3 = "Neváhejte se na mě obrátit se svými potřebami s nehtama";
+const textOdsek3 = "Neváhejte se na mě obrátit se svými potřebami s nehtama.";
 const Landing = () => {
     return (
         <Container style={{ textAlign: "center", marginTop: "10px" }}>
             <Row>
                 <Col xs={12} md={6} lg={7} >
-                    <h1 className="myFontHeader">
+                    <img src={banner} alt="banner" id="banner" width="100%" />
+                    {/*<h1 className="myFontHeader">
                         {textHeader}
-                    </h1>
+                    </h1>*/}
                     <div className="myBodyText">
                         <p></p>
                         <p> {textUvod} </p>
@@ -28,7 +32,14 @@ const Landing = () => {
                         </p>
                         <p> {textOdsek3} </p>
                     </div>
-
+                    <div className="contact">
+                        <p>
+                            <img src={phone} alt="phone" id="phone" /> +420 777 215 510
+                        </p>
+                        <p>
+                            <img src={email} alt="email" id="email" /> brezovska.katarina@gmail.com
+                        </p>
+                    </div>
                 </Col>
                 <Col xs={12} md={6} lg={5}>
                     <img src={salonImg} alt="salonImg" id="salonImg" />
