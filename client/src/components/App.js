@@ -7,7 +7,8 @@ import CommentList from "./CommentList";
 import Gallery from "./Gallery";
 import MyCalendar from "./MyCalendar";
 import Pshine from "./Pshine";
-
+import CNDShellac from './CNDShellac';
+import Jessica from './Jessica';
 
 const SurveyNew = () => <h2>SurveyNew</h2>
 
@@ -27,6 +28,8 @@ class App extends Component {
                         <Route exact path="/gallery" component={Gallery} />
                         <Route exact path="/comments" component={CommentList} />
                         <Route exact path="/pshine" component={Pshine} />
+                        <Route exact path="/cndshellac" component={CNDShellac} />
+                        <Route exact path="/jessica" component={Jessica} />
                     </Container>
                 </BrowserRouter>
             </div>

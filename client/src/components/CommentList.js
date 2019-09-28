@@ -5,8 +5,10 @@ import * as actions from "../actions";
 import { connect } from "react-redux";
 import RenderComments from "./RenderComments";
 import InputGroup from "react-bootstrap/InputGroup";
-const URL = () =>{
-    if (process.env.NODE_ENV === "development"){return 'ws://localhost:3030'}
+
+const textComment = "Přidat komentář";
+const URL = () => {
+    if (process.env.NODE_ENV === "development") { return 'ws://localhost:3030' }
     return 'wss://boiling-sands-96880.herokuapp.com'
 };
 
@@ -15,15 +17,15 @@ class Comment extends Component {
     ws = new WebSocket(URL());
     state = { term: "" };
     componentDidMount() {
-        this.props.getComments();     
+        this.props.getComments();
         this.ws.onmessage = evt => {
-            if(evt.data === "newComment"){
+            if (evt.data === "newComment") {
                 this.props.getComments();
             }
-        }     
+        }
         this.ws.onclose = () => {
             this.setState({
-              ws: new WebSocket(URL()),
+                ws: new WebSocket(URL()),
             })
         }
     }
@@ -31,39 +33,39 @@ class Comment extends Component {
 
     onInputChange = (event) => {
         let inputValue = event.target.value;
-        this.setState ( { term: inputValue });
+        this.setState({ term: inputValue });
     };
 
     onFormSubmit = event => {
-        switch (this.props.auth){
+        switch (this.props.auth) {
             case null:
                 return window.alert("Pro přidání komentáře je potřebné se přihlásit");
             case false:
                 return window.alert("Pro přidání komentáře je potřebné se přihlásit");
-            default:     
+            default:
                 this.props.handleComment(this.state.term);
                 this.ws.send("newComment");
                 event.preventDefault();
-                this.setState ({ term: "" });
+                this.setState({ term: "" });
         }
     };
 
-    render () {
-        return(
+    render() {
+        return (
             <div>
                 <InputGroup className="mb-3" onSubmit={this.onInputChange}>
-                        <Button variant="primary" type="submit" onClick={
-                            (e) => this.onFormSubmit(e)
-                            } >
-                            Pridat komentar 
-                        </Button> 
-                        <Form.Control type="text" placeholder="nap&iacute;s tvoj koment&aacute;r"
+                    <Button variant="primary" type="submit" onClick={
+                        (e) => this.onFormSubmit(e)
+                    } >
+                        {textComment}
+                    </Button>
+                    <Form.Control type="text" placeholder="napíš tvoj komentář"
                         value={this.state.term}
-                        onChange={this.onInputChange}/>
+                        onChange={this.onInputChange} />
                 </ InputGroup>
 
                 <div>
-                   <RenderComments props={this.props.comments} />
+                    <RenderComments props={this.props.comments} />
                 </div>
             </div>
         );

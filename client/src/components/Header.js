@@ -66,10 +66,15 @@ class Header extends Component {
 
                             <NavDropdown title="Služby" id="basic-nav-dropdown">
                                 <LinkContainer exact to="/pshine">
-                                    <NavDropdown.Item>PShine</NavDropdown.Item>
+                                    <NavDropdown.Item>P.Shine</NavDropdown.Item>
                                 </LinkContainer>
-                                <NavDropdown.Item href="#action/3.2">ShellLack</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Jin&eacute;</NavDropdown.Item>
+                                <LinkContainer exact to="/cndshellac">
+                                    <NavDropdown.Item>CND Shellac</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer exact to="/jessica">
+                                    <NavDropdown.Item>Jessica nail therapy</NavDropdown.Item>
+                                </LinkContainer>
+
 
                             </NavDropdown>
                         </Nav>
