@@ -1,10 +1,12 @@
-import { FETCH_EVENTS } from "../actions/types";
+import { FETCH_EVENTS, POST_EVENT } from "../actions/types";
 
-export default function(state = [], action){
+export default function (state = [], action) {
 
-    switch(action.type){
+    switch (action.type) {
         case FETCH_EVENTS:
             return action.payload || false;
+        case POST_EVENT:
+            return [...state, action.payload];
         default:
             return state;
     }

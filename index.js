@@ -16,18 +16,19 @@ wss.on('connection', function connection(ws) {
     wss.clients.forEach(function each(client) {
       if (client !== ws && client.readyState === WebSocket.OPEN) {
         client.send(data);
+        console.log(data);
       }
     });
   });
 });
 const PORT = process.env.PORT || 3030;
 
-server.listen(PORT, function() {
+server.listen(PORT, function () {
 
   console.log(`http/ws server listening on ${PORT}`);
 });
 
-if (process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV === "production") {
   const WebSocket = require('isomorphic-ws')
 
 

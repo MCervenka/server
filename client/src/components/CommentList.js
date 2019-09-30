@@ -5,6 +5,7 @@ import * as actions from "../actions";
 import { connect } from "react-redux";
 import RenderComments from "./RenderComments";
 import InputGroup from "react-bootstrap/InputGroup";
+import moment from 'moment';
 
 const textComment = "Přidat komentář";
 const URL = () => {
@@ -19,9 +20,8 @@ class Comment extends Component {
     componentDidMount() {
         this.props.getComments();
         this.ws.onmessage = evt => {
-            if (evt.data === "newComment") {
-                this.props.getComments();
-            }
+            let wsComment = JSON.parse(evt.data);
+            this.props.handleCommentWs(wsComment);
         }
         this.ws.onclose = () => {
             this.setState({
@@ -44,7 +44,11 @@ class Comment extends Component {
                 return window.alert("Pro přidání komentáře je potřebné se přihlásit");
             default:
                 this.props.handleComment(this.state.term);
-                this.ws.send("newComment");
+                this.ws.send(JSON.stringify({
+                    comment: this.state.term,
+                    id: this.props.auth.userName,
+                    date: moment().format("DD.MM.YYYY hh:mm:ss")
+                }));
                 event.preventDefault();
                 this.setState({ term: "" });
         }
