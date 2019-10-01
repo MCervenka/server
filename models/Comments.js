@@ -4,7 +4,8 @@ const { Schema } = mongoose;
 const commentSchema = new Schema({
     comment: String,
     id: String,
-    date: String
+    date: String,
+    databaseId: String
 });
 
 mongoose.model("comments", commentSchema);

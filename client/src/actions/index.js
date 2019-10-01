@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_COMMENT, FETCH_EVENTS, POST_COMMENT, POST_EVENT } from "./types";
+import { FETCH_USER, FETCH_COMMENTS, FETCH_EVENTS, POST_COMMENT, POST_EVENT, DELETE_COMMENT } from "./types";
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get("/api/current_user")
@@ -16,8 +16,13 @@ export const handleCommentWs = (commentNew) => dispatch => {
 };
 
 export const getComments = () => async dispatch => {
-    const res = await axios.get("/api/get/comments");
-    dispatch({ type: FETCH_COMMENT, payload: res.data })
+    const res = await axios.get("/api/comment");
+    dispatch({ type: FETCH_COMMENTS, payload: res.data })
+};
+
+export const deleteComment = (commentId) => async dispatch => {
+    await axios.delete('/api/comment/' + commentId);
+    dispatch({ type: DELETE_COMMENT, payload: commentId })
 };
 
 export const handleEvent = (event) => async dispatch => {
@@ -30,6 +35,6 @@ export const handleEventWS = (event) => dispatch => {
 };
 
 export const getEvents = () => async dispatch => {
-    const res = await axios.get("/api/get/event");
+    const res = await axios.get("/api/event");
     dispatch({ type: FETCH_EVENTS, payload: res.data })
 };

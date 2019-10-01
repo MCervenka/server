@@ -69,7 +69,7 @@ class Comment extends Component {
                 </ InputGroup>
 
                 <div>
-                    <RenderComments props={this.props.comments} />
+                    <RenderComments comments={this.props.comments} />
                 </div>
             </div>
         );
